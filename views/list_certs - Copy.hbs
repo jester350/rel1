@@ -1,0 +1,84 @@
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+<li class="page-item" id="pagebut">
+<li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<script type="text/javascript">
+var i;
+var navline="";
+for (i = 1; i <= {{rowcount}}; i++) { 
+    navline =navline+ '<li class="page-item"><a class="page-link" href="#'+i+'">'+i+'</a></li>';
+    }
+alert(navline);
+document.getElementById("pagebut").innerHTML = navline;
+</script>
+
+<div class = "row">
+<div class = "col-md-12">
+    <div class = "table-responsive">
+        <table class ="table">
+        <thead>
+            <tr>
+                <th>Cert&nbsp;Name</th>
+                <th>System</th>
+                <th>Start Date</th>
+                <th>Expiry Date</th>
+                <th>Days till Expiry</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody id="names" class="collection with-header">
+            {{#each data}}
+            <tr class="{{classtype}}">
+                <td><a id = "certname"  href="/certs/cert{{rowid}}">{{certname}}</a></td>
+                <td class="{{classtype}}">{{{systemname}}}</td>
+                <td>{{{certstartdate}}}</td>
+                <td>{{{certexpirydate}}}</td>
+                <td>{{{daysleft}}}</td>
+                {{!-- TODO: search employee name --}}
+                <td><a id = "certname" href="/certs/{{row_id}}">{{name}}</a></td>
+            </tr>
+            {{else}}
+            <tr>
+                <td>No&nbsp;Data&nbsp;Available</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>{{/each}}
+        </tbody>
+        </table>
+        <table style="display:none">
+            <tbody id="department-names">
+                {{#each departmentTitle}}
+                <tr class="collection-item-department">
+                    <td>{{departmentName}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <div>
+            <canvas id="myChart" width="20%" height="20%" style="display: block; height: 50%; width: 50%;"></canvas>
+        </div>
+    </div>
+</div>
+</div>
+{{rowcount}}

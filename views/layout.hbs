@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{title}}</title>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+    crossorigin="anonymous"></script>
+
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link  href='../public/stylesheets/style.css' rel="stylesheet" type="css">
+  <link href="../public/javascripts/jQueryAssets/jquery.ui.core.min.css" rel="stylesheet" type="css">
+  <link href="../public/javascripts/jQueryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="css">
+  <link href="../public/javascripts/jQueryAssets/jquery.ui.datepicker.min.css" rel="stylesheet" type="css">
+  <script src="../public/javascripts/jQueryAssets/jquery-1.11.1.min.js"></script>
+  <script src="../jquery.ui-1.10.4.datepicker.min.js"></script>
+  <script src="../node_modules/date-and-time/date-and-time.min.js"></script>
+  <script type="text/javascript">
+</script>
+<div class = "row">
+<div class="col-md-12">
+    <h1>
+        {{title}} : {{accessLvl}} : {{certid}}
+        <a href="/logout" class = "btn btn-primary pull-right" style="margin-top:5px; margin-right:5px;">Log&nbsp;Out</a>
+        {{#compare title "==" "User Admin"}}
+                  <a href="/admin/add" class = "btn btn-primary pull-right" style="margin-top:5px;margin-right:5px;">Add&nbsp;New&nbsp;User</a>
+        {{/compare}}
+        {{#compare title "!=" "User Admin"}}
+                  <a href="/certs/add" class = "btn btn-primary pull-right" style="margin-top:5px;margin-right:5px;">Add&nbsp;New&nbsp;Cert</a>
+        {{/compare}}
+        {{#compare accessLvl "==" 1}}
+                  <a href="/admin/" class = "btn btn-danger pull-right" style="margin-top:5px;margin-right:5px;">Users</a>
+        {{/compare}}
+
+        <a href="/certs/" class = "btn btn-success pull-right" style="margin-top:5px;margin-right:5px;">Home</a>
+    </h1>
+    <hr />
+    </div>
+    </div>
+</head>
+
+<body>
+  {{{body}}}
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+<div id="pagebut"></div>
+  </ul>
+</nav>
+<div id="afterbut"></div>
+
+<script type="text/javascript">
+var i;
+var navline='<li class="page-item"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span></a></li>'; 
+currpage=({{recordDetails.currentPage}}/{{recordDetails.recPerPage}}+1);
+// alert("Tot "+{{recordDetails.totalRecords}});
+// alert("pagecount "+{{recordDetails.pageCount}});
+for (i = 1; i <= {{recordDetails.pageCount}}; i++) { 
+    // alert("i: "+i+"recordDetails.recPerPage "+{{recordDetails.recPerPage}});
+    var pc = Math.ceil((i-1)*{{recordDetails.recPerPage}});
+    // alert(pc);
+    activepage="";
+    // alert("i: "+i+" curpage: "+currpage);
+    if (i == currpage) {
+        activepage=' active';
+    }
+    navline =navline+ '<li class="page-item'+activepage+'"><a id="Next" class="page-link" href="?offset='+pc+'&count='+{{recordDetails.recPerPage}}+'">'+i+'</a></li>';
+    }
+navline=navline+'<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>'; 
+
+// alert(navline);
+var d1 = document.getElementById('pagebut');
+d1.insertAdjacentHTML('afterend', navline);
+var d2 = document.getElementById('afterbut');
+endline="current page: "+({{recordDetails.currentPage}}/{{recordDetails.recPerPage}}+1);
+d2.insertAdjacentHTML('afterend', endline);
+</script>
+
+<script>
+var el = document.getElementById("Next");
+if (el.addEventListener)
+    el.addEventListener("click", nextpage(), false);
+else if (el.attachEvent)
+    el.attachEvent('onclick', nextpage());
+
+function nextpage() {
+    // do nowt
+}
+</script>
+
+<select name="recordsToDisplay" id="recordsToDisplay">
+  <option value="10">10</option>
+  <option value="20" selected>20</option>
+  <option value="50">50</option>
+  <option value="ALL">ALL</option>
+</select>
+
+<script>
+var x = document.getElementById("recordsToDisplay");
+var txt = "";
+txt += "The node value: " + x.nodeValue + "<br>";
+// alert(txt);
+</script>
+
+<div class = "row">
+<div class = "col-md-12">
+    <div class = "table-responsive">
+        <table class ="table">
+        <thead>
+            <tr>
+                <th width="200">Cert&nbsp;Name</th>
+                <th width="200">Project</th>
+                <th width="200">Device</th>
+                <th width="300">Start Date</th>
+                <th width="300">Expiry Date</th>
+                <th width="200">Days till Expiry</th>
+                <th width="200">Certificate</th>
+            </tr>
+        </thead>
+
+        <thead>
+            <tr>
+                <th>
+                    <input type="text" name="certFilter" value="">
+                </th>
+                <th>
+                    <input type="text" name="systemFilter" value="">
+                </th>
+                <th><a href="/certs/add" class = "btn btn-primary pull-left" style="margin-top:5px;margin-right:15px;">Search</a></th>
+            </tr>
+        </thead>
+
+        <tbody id="names" class="collection with-header">
+            {{#each data}}
+            <tr class="{{classtype}}">
+                <td><a id = "certname"  href="/certs/record{{rowid}}">{{certname}}</a></td>
+                <td class="{{classtype}}">{{{systemname}}}</td>
+                <td></td>
+                <td>{{{certstartdate}}}</td>
+                <td>{{{certexpirydate}}}</td>
+                <td>{{{daysleft}}}</td>
+                <td>{{{certfile}}}</td>
+                {{!-- TODO: search employee name --}}
+                <td><a id = "certname" href="/certs/{{row_id}}">{{name}}</a></td>
+            </tr>
+            {{else}}
+            <tr>
+                <td>No&nbsp;Data&nbsp;Available</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>{{/each}}
+        </tbody>
+        </table>
+        <table style="display:none">
+            <tbody id="department-names">
+                {{#each departmentTitle}}
+                <tr class="collection-item-department">
+                    <td>{{departmentName}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <div>
+            <canvas id="myChart" width="20%" height="20%" style="display: block; height: 50%; width: 50%;"></canvas>
+        </div>
+    </div>
+</div>
+</div>
+{{rowcount}}

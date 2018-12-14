@@ -1,0 +1,22 @@
+<script>bb=1+2</script>
+
+<form id="form1" name="form1" method="post">
+ {{#each data}}
+ <label for="textfield">Cert Name :</label>
+<input type="text" name="textfield" id="textfield" value="{{{certname}}}"><br>
+{{/each}}
+<label for="date3">Start Date:</label>
+<input type="date" name="date" id="date" value="{{{sdate}}}"><br>
+<label for="date4">Expiry Date:</label>
+<input type="date" name="date2" id="date2" value="{{{edate}}}"><br>
+<label for="textfield">Days till Expiry :</label>
+<input type="text" name="systemname" id="systemname" value="{{{dleft}}}"><br>
+<label for="textfield">System Name :</label>
+<input type="text" name="systemname" id="systemname" value="{{{sysname}}}"><br>
+<input type="submit">
+</form>
+<script type="text/javascript">
+$(function() {
+	$( "#Datepicker1" ).datepicker(); 
+});
+</script>

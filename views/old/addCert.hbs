@@ -1,0 +1,17 @@
+<form action="post" method="post" name="addcert" id="addcert">
+    <label for="name">Cert Name:</label>
+    <input type="text" name="name" id="name"><br>
+    <label for="date3">Start Date:</label>
+    <input type="date" name="start_date" id="date"><br>
+    <label for="date4">Expiry Date:</label>
+    <input type="date" name="expiry_date" id="date2"><br>
+    <input list="systems">
+    <datalist id="systems">
+        {{#each data}}
+        <option data-value="{{id}}">{{systemname}}</option>
+        {{/each}}
+    </datalist>
+
+    <br><br><input type="submit">
+</form>
+</script>

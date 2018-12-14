@@ -1,0 +1,64 @@
+<div class = "row">
+<div class="col-md-12">
+    <h1>
+        {{title}} 
+        <a href="/certs/add" class = "btn btn-success pull-right" style="margin-top:5px;">Add&nbsp;New&nbsp;Cert</a>
+    </h1>
+    <hr />
+</div>
+</div>
+<div class = "row">
+<div class = "col-md-12">
+    <div class = "table-responsive">
+        <table class ="table">
+        <thead>
+            <tr>
+                <th>Cert&nbsp;Name</th>
+                <th>System</th>
+                <th>Start Date</th>
+                <th>Expiry Date</th>
+                <th>Days till Expiry</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody id="names" class="collection with-header">
+            {{#each data}}
+            <tr class="collection-item">
+                <td><a id = "certname" href="/certs/cert{{rowid}}">{{certname}}</a></td>
+                <td>{{{systemname}}}</td>
+                <td>{{{certstartdate}}}</td>
+                <td>{{{certexpirydate}}}</td>
+                <td>{{{daysleft}}}</td>
+                {{!-- TODO: search employee name --}}
+                <td><a id = "certname" href="/certs/{{row_id}}">{{name}}</a></td>
+            </tr>
+            {{else}}
+            <tr>
+                <td>No&nbsp;Data&nbsp;Available</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>{{/each}}
+        </tbody>
+        </table>
+        <table style="display:none">
+            <tbody id="department-names">
+                {{#each departmentTitle}}
+                <tr class="collection-item-department">
+                    <td>{{departmentName}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <div>
+            <canvas id="myChart" width="20%" height="20%" style="display: block; height: 50%; width: 50%;"></canvas>
+        </div>
+    </div>
+</div>
+</div>

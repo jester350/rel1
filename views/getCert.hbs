@@ -1,0 +1,32 @@
+<form action="updatecert" method="post" name="updatecert" id="updatecert" encType="multipart/form-data">
+    
+    
+    <input type="hidden" id="certid" name="certid" value="{{certid}}">
+
+    
+    <label for="name">Cert Name::</label>
+    <input type="text" name="name" id="name" value="{{{certname}}}"><br>
+    <label for="date3">Start Date:</label>
+    <input type="date" name="start_date" id="date" value="{{{sdate}}}"><br>
+    <label for="date4">Expiry Date:</label>
+    <input type="date" name="expiry_date" id="date2" value="{{{edate}}}"><br>
+    <label for="textfield">System Name :: {{sysname}}</label>
+    <select name = "systems" selected = {{{sysname}}}>
+        {{#each projects}}
+        {{#compare projectname "==" sysname}}
+            <option value="{{projectid}}" option selected="selected">{{projectname}}</option>
+        {{/compare}}
+        {{#compare projectname "!=" sysname}}
+            <option value="{{projectid}}">{{projectname}}</option>
+        {{/compare}}
+        {{/each}}
+    </select><br>
+    <label for="name">Cert file:</label>
+    <input type="text" name="currentCertFile" id="currentCertFile" value="{{{certfile}}}"><input type="file" name="theFile" /><br>
+    <br><input type="submit" value='Submit'>
+</form>
+<script type="text/javascript">
+$(function() {
+	$( "#Datepicker1" ).datepicker(); 
+});
+</script>
